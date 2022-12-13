@@ -18,3 +18,6 @@ test("Can get id via getId()", () => {
 test("Can get email via getEmail()", () => {
     expect(employee.getEmail()).toBe('thisthat@gmail.com');
 });
+test("Can get role via getRole()", () => {
+    expect(employee.getRole()).toBe('Employee');
+});

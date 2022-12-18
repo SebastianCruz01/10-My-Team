@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+}
+
+:root{
+    --promary-color: #f1f1f1;
+    --secondary-color: #333;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--promary-color);
+}
+
+#navbar{
+    background-color: var(--secondary-color);
+    color: var(--promary-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card-header {
+    background-color: var(--secondary-color);
+    color: var(--promary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.card-body{
+    background-color: var(--promary-color);
+    color: var(--secondary-color);
+    padding: 1rem;
+}
+
+.container
+{
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}

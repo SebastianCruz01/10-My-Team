@@ -1,0 +1,27 @@
+{
+  "name": "myteam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": { 
+    "start": "node index.js",
+    "test": "jest --verbose --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastianCruz01/myTeam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebastianCruz01/myTeam/issues"
+  },
+  "homepage": "https://github.com/SebastianCruz01/myTeam#readme",
+  "dependencies": {
+    "inquirer": "^7.1.4",
+    "jest": "^29.3.1"
+  }
+}

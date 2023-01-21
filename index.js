@@ -7,7 +7,7 @@ const path = require('path');
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 const teamMembers = [];
-const render =require('./src/generateHTML');
+const render = require('./src/generateHTML');
 const Employee = require('./lib/Employee');
 const generateHTML = require('./src/generateHTML');
 
@@ -52,112 +52,48 @@ const addManager = () => {
             type: 'input',
             name: 'officeNumber',
             message: 'What is your office number?'
-        
+
         }
     ])
-    .then(managerInput => {
-        const { name, id, email, officeNumber } = managerInput;
-        const manager = new Manager(name, id, email, officeNumber);
-        teamMembers.push(manager);
-        console.log(manager);
-    })
+        .then(managerInput => {
+            const { name, id, email, officeNumber } = managerInput;
+            const manager = new Manager(name, id, email, officeNumber);
+            teamMembers.push(manager);
+            console.log(manager);
+            addEmployee();
+
+        })
 };
 
 
 //MANAGER PROMPT
 
-//For Manager
-function managerInfo() {
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "Enter your name"
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "Enter your id"
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "Enter your email"
-        },
-        {
-            type: "input",
-            name: "officeNumber",
-            message: "Enter your office number"
-        }
-    ])
-    .then((answers) => {
-        const { name, id, email, officeNumber } = answers;
-        const manager = new Manager(name, id, email, officeNumber);
-        teamMembers.push(manager);
-    });
-    
-}
-
 const addEmployee = () => {
-    console.log(`
-    =================
-    Add a New Employee
-    =================
-    `);
+   
     return inquirer.prompt([
         {
             type: 'list',
             name: 'role',
             message: 'What is your role?',
-            choices: ['Engineer', 'Intern']
-        },
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is your name?'
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'What is your id?'
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'What is your email?'
-        },
-        {
-            type: 'input',
-            name: 'github',
-            message: 'What is your github?'
-        },
-        {
-            type: 'input',
-            name: 'school',
-            message: 'What is your school?'
+            choices: ['Engineer', 'Intern','I dont want to add any more team members']
         }
-        ])
+    ])
 
-.then(employeeData => {
-    let { name, id, email, role, github, school } = employeeData;
-    let employee;
+        .then(employeeData => {
+            let { name, id, email, role, github, school } = employeeData;
+            let employee;
 
-    if (role === 'Engineer') {
-        employee = new Engineer(name, id, email, github);
-        console.log(employee);
-    } else if (role === 'Intern') {
-        employee = new Intern(name, id, email, school);
-        console.log(employee);
-    }
-    teamMembers.push(employee);
-    
-    if (addEmployee) {
-        return addEmployee(teamMembers);
-    } else {
-        return teamMembers;
-    }
-
-
+            if (role === 'Engineer') {
+                engineerInfo();
+            } else if (role === 'Intern') {
+                internInfo();
+            }
+            else {
+                console.log(teamMembers);
+                generateHTML(teamMembers);
+            }
+        });
+};
 
 
 //For Engineer
@@ -187,7 +123,7 @@ function engineerInfo() {
         const { name, id, email, github } = answers;
         const engineer = new Engineer(name, id, email, github);
         teamMembers.push(engineer);
-        
+        addEmployee();
     })
 }
 
@@ -217,29 +153,30 @@ function internInfo() {
     ]).then((answers) => {
         const { name, id, email, school } = answers;
         const intern = new Intern(name, id, email, school);
-        teamMembers.push(intern);  
-        
+        teamMembers.push(intern);
+        addEmployee();
+
     })
 
 
-.then(employeeData => {
-    let {name, id, email, role, officeNumber, github, school} = employeeData;
-    let employee;
-    if (role === 'Engineer') {
-        employee = new Engineer(name, id, email, github);
-        console.log(employee);
-    } else if (role === 'Intern') {
-        employee = new Intern(name, id, email, school);
-        console.log(employee);
-    }
-    teamMembers.push(employee);
+        .then(employeeData => {
+            let { name, id, email, role, officeNumber, github, school } = employeeData;
+            let employee;
+            if (role === 'Engineer') {
+                employee = new Engineer(name, id, email, github);
+                console.log(employee);
+            } else if (role === 'Intern') {
+                employee = new Intern(name, id, email, school);
+                console.log(employee);
+            }
+            teamMembers.push(employee);
 
-    if (confirmAddEmployee) {
-        return newMember(teamMembers);
-    } else {
-        return teamMembers;
-    }
-})
+            if (confirmAddEmployee) {
+                return newMember(teamMembers);
+            } else {
+                return teamMembers;
+            }
+        })
 };
 
 const writeFile = data => {
@@ -254,7 +191,7 @@ const writeFile = data => {
 };
 
 
-})}
+
 
 // Create an HTML file using the HTML returned from the `render` function con HTMLrenderer file. 
 // function generateHTML(info, file) {

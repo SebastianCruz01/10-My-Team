@@ -75,7 +75,7 @@ const addEmployee = () => {
             type: 'list',
             name: 'role',
             message: 'What is your role?',
-            choices: ['Engineer', 'Intern','I dont want to add any more team members']
+            choices: ['Engineer', 'Intern','Manager', 'I dont want to add any more team members']
         }
     ])
 
@@ -158,7 +158,6 @@ function internInfo() {
 
     })
 
-
         .then(employeeData => {
             let { name, id, email, role, officeNumber, github, school } = employeeData;
             let employee;
@@ -177,8 +176,7 @@ function internInfo() {
                 return teamMembers;
             }
         })
-};
-
+} 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
         if (err) {
@@ -190,26 +188,5 @@ const writeFile = data => {
     })
 };
 
-
-
-
-// Create an HTML file using the HTML returned from the `render` function con HTMLrenderer file. 
-// function generateHTML(info, file) {
-//     fs.writeFile(info, file, (err) => {
-//       if (err) {
-//         throw err;
-//       }
-//       console.log("Your team is complete!");
-//     });
-//  };
 addManager()
-//     .then(newMember)
-//     .then(teamMembers => {
-//     return generateHTML(teamMembers);
-//     })
-// .then(pageHTML => {
-//     return writeFile(pageHTML);
-//     })
-// .catch(err => {
-//     console.log(err);
-// });  
+  

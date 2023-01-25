@@ -4,8 +4,7 @@ function generateManagerCard(manager) {
     <div class="col-4 mt-4">
         <div class="card h-100">
             <div class="card-header">
-                <h2 class="card-title
-            "<h2>${manager.name}</h2>
+                <h2 class= "card-title"> ${manager.name}</h2>
             <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
         </div>
         <div class="card-body">
@@ -25,13 +24,13 @@ function generateEngineerCard(engineer) {
     <div class="col-4 mt-4">
         <div class="card h-100">
             <div class="card-header">
-                <h2 class ${engineer.name}</h2>
+                <h2 class = "name">  ${engineer.name}</h2>
                     <h3>Engineer</h3> <i class="material-icons">content_paste</i>
             </div>
 
                                         
             <div class="card-body">
-                    p class= "id">ID: ${engineer.id} </p>
+                    <p class= "id">ID: ${engineer.id} </p>
                     <p class= "email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
                     <p class= "github">GitHub: < href="https:https:https:github.com/${engineer.github}">${engineer.github}</a></p>
             </div>
@@ -46,13 +45,13 @@ function generateInternCard(intern) {
     <div class="col-4 mt-4">
         <div class="card h-100">
             <div class="card-header">
-                <h2 class ${intern.name}</h2>
+                <h2 class ="name"> ${intern.name}</h2>
                     <h3>Intern</h3> <i class="material-icons">content_paste</i>
             </div>
 
                                         
             <div class="card-body">
-                    p class= "id">ID: ${intern.id} </p>
+                    <p class= "id">ID: ${intern.id} </p>
                     <p class= "email">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
                     <p class= "school">School: ${intern.school}</p>
             </div>

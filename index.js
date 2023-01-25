@@ -11,26 +11,6 @@ const render = require('./src/generateHTML');
 const Employee = require('./lib/Employee');
 const generateHTML = require('./src/generateHTML');
 
-
-// function newMember () {
-//     inquirer.prompt([
-//         {
-//             type: 'list',
-//             name: 'role',
-//             message: 'What is your role?',
-//             choices: ['Manager', 'Engineer', 'Intern']
-//         }
-//     ]).then(function (data) {
-//         if (data.role === 'Manager') {
-//             managerInfo();
-//         } else if (data.role === 'Engineer') {
-//             engineerInfo();
-//         } else if (data.role === 'Intern') {
-//             internInfo();
-//         }
-//     })
-// }
-
 const addManager = () => {
     return inquirer.prompt([
         {
@@ -75,7 +55,7 @@ const addEmployee = () => {
             type: 'list',
             name: 'role',
             message: 'What is your role?',
-            choices: ['Engineer', 'Intern','Manager', 'I dont want to add any more team members']
+            choices: ['Engineer', 'Intern','I dont want to add any more team members']
         }
     ])
 
@@ -90,7 +70,9 @@ const addEmployee = () => {
             }
             else {
                 console.log(teamMembers);
-                generateHTML(teamMembers);
+            var test = generateHTML(teamMembers);
+            console.log(test);
+            writeFile(test);
             }
         });
 };
@@ -157,25 +139,6 @@ function internInfo() {
         addEmployee();
 
     })
-
-        .then(employeeData => {
-            let { name, id, email, role, officeNumber, github, school } = employeeData;
-            let employee;
-            if (role === 'Engineer') {
-                employee = new Engineer(name, id, email, github);
-                console.log(employee);
-            } else if (role === 'Intern') {
-                employee = new Intern(name, id, email, school);
-                console.log(employee);
-            }
-            teamMembers.push(employee);
-
-            if (confirmAddEmployee) {
-                return newMember(teamMembers);
-            } else {
-                return teamMembers;
-            }
-        })
 } 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
